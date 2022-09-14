@@ -1,16 +1,20 @@
 (ns log-collection.server
   (:require [compojure.core :refer [defroutes GET]]
             [compojure.route :as route]
+            [compojure.coercions :as coercions]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.defaults :refer [wrap-defaults api-defaults]]
             [ring.middleware.json :refer [wrap-json-response]]
             [ring.middleware.reload :as reload]
-            [ring.util.response :as response]))
+            [log-collection.handlers :as handlers]))
 
+;; The server routes
 (defroutes
   routes
-  (GET "/test" [p1] (response/response {:p1 p1 :test "testing"}))
+  (GET "/lines" [filename lines :<< coercions/as-int keyword]
+    (handlers/lines-handler filename lines keyword))
+
   (route/not-found "Not found"))
 
 (defn start [config]
