@@ -1,9 +1,10 @@
-(defproject log-collection "0.1.0-SNAPSHOT"
+(defproject log-collection "1.0"
   :description "API that provides logs from files"
   :url "https://github.com/ElChache/log-collection"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
-  :dependencies [[compojure "1.7.0"]
+  :dependencies [[clojure-interop/apache-commons-io "1.0.0"]
+                 [compojure "1.7.0"]
                  [cprop "0.1.19"]
                  [org.clojure/clojure "1.10.3"]
                  [ring "1.9.5"]
